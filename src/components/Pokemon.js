@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     mainDetails: {
         padding: 30,
         alignItems: 'center',
+        color: '#ffffff'
     },
     image: {
         width: 100,
@@ -44,21 +45,25 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold',
         textAlign: 'center',
+        color: '#ffffff'
     },
     description: {
         marginTop: 20,
+        color: '#ffffff'
     },
     types: {
         flexDirection: 'row',
         marginTop: 20,
+        color: '#ffffff'
     },
     type: {
         padding: 5,
         width: 100,
         alignItems: 'center',
+        color: '#ffffff'
     },
     typeText: {
-        color: '#fff',
+        color: '#ffffff',
     },
     normal: {
         backgroundColor: '#8a8a59',

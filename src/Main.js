@@ -7,6 +7,7 @@ import {
     StyleSheet,
     ActivityIndicator,
     TouchableOpacity,
+    StatusBar,
     Text
 } from 'react-native';
 
@@ -31,9 +32,13 @@ export default class Main extends Component {
     }
 
     render() {
-        const { name, pic, types, desc, searchInput, isLoading } = this.state; // extract the Pokémon data from the state
+        const { name, pic, types, desc, isLoading } = this.state;
         return (
             <SafeAreaView style={styles.wrapper}>
+                <StatusBar
+                    backgroundColor="#e94560"
+                    barStyle="light-content"
+                />
                 <View style={styles.container}>
                     <View style={styles.headContainer}>
                         <View style={styles.textInputContainer}>
@@ -55,7 +60,7 @@ export default class Main extends Component {
                     </View>
 
                     <View style={styles.mainContainer}>
-                        {isLoading && <ActivityIndicator size="large" color="#0064e1" />}
+                        {isLoading && <ActivityIndicator size="large" color="#e94560" />}
 
                         {!isLoading && (
                             <Pokemon name={name} pic={pic} types={types} desc={desc} />
@@ -68,10 +73,10 @@ export default class Main extends Component {
 
     searchPokemon = async () => {
         try {
-            const pokemonID = pokemon.getId(this.state.searchInput); // check if the entered Pokémon name is valid
+            const pokemonID = pokemon.getId(this.state.searchInput);
 
             this.setState({
-                isLoading: true, // show the loader while request is being performed
+                isLoading: true,
             });
 
             const { data: pokemonData } = await axios.get(
@@ -89,7 +94,7 @@ export default class Main extends Component {
                 pic: sprites.front_default,
                 types: this.getTypes(types),
                 desc: this.getDescription(flavor_text_entries),
-                isLoading: false, // hide loader
+                isLoading: false,
             });
         } catch (err) {
             Alert.alert('Error', 'Pokémon not found');
@@ -113,7 +118,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#1a1a2e'
     },
     headContainer: {
         flex: 1,
@@ -125,7 +130,6 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flex: 1,
-        borderRadius: 50,
     },
     mainContainer: {
         flex: 9,
@@ -143,11 +147,13 @@ const styles = StyleSheet.create({
     searchButton: {
         height: 35,
         width: 100,
-        backgroundColor: '#03e8fc',
-        alignContent: 'center',
-        justifyContent: 'center'
+        backgroundColor: '#e94560',
+        justifyContent: 'center',
+        borderBottomRightRadius: 10,
+        borderTopRightRadius: 10
     },
     searchText: {
         color: '#ffffff',
+        alignSelf: 'center'
     }
 });
